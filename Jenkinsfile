@@ -17,9 +17,7 @@ pipeline {
 	stage('Sonar Job') {
            steps{
 		   echo 'Sonar job starting...'
-           bat "gradlew jacocoTestReport sonarqube -x check"               
-           step( [$class: 'JacocoPublisher',
-                  exclusionPattern: '**/*Exception*,**/*Configuration*,**/ApiApplication*,**/*Test*'] )
+           bat 'mvn -X -Djacoco.destFile=./coverage/jacoco.exec clean org.jacoco:jacoco-maven-plugin:prepare-agent install'
           }
         }
 	stage('Jacoco Job') {
