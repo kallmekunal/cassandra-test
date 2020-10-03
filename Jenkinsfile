@@ -18,6 +18,7 @@ pipeline {
            steps{
 		   echo 'Sonar job starting...'
            bat 'mvn -X -Djacoco.destFile=./coverage/jacoco.exec clean org.jacoco:jacoco-maven-plugin:prepare-agent install'
+		   publishHTML(target: [reportDir:'coverage/jacoco.exec', reportFiles: 'index.html', reportName: 'Code Coverage'])
           }
         }
 	stage('Jacoco Job') {
