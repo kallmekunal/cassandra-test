@@ -12,6 +12,16 @@ pipeline {
             steps {
                 echo 'Testing..'
             }
+        }    
+	stage('Sonar Job') {
+            steps {
+                echo 'Sonar ..'
+            }
+        }
+	stage('Jacoco Job') {
+            steps {
+                echo 'Jacoco ..'
+            }
         }
         stage('Deploy') {
             steps {
