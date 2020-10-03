@@ -11,12 +11,16 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+		    bat 'mvn -Dmaven.test.failure.ignore=false test'
             }
         }    
 	stage('Sonar Job') {
-            steps {
-                echo 'Sonar ..'
-            }
+           steps{
+		   echo 'Sonar job starting...'
+           bat "./gradlew jacocoTestReport sonarqube -x check"               
+           step( [$class: 'JacocoPublisher',
+                  exclusionPattern: '**/*Exception*,**/*Configuration*,**/ApiApplication*,**/*Test*'] )
+          }
         }
 	stage('Jacoco Job') {
             steps {
