@@ -17,7 +17,7 @@ pipeline {
 	stage('Sonar Job') {
            steps{
 		   echo 'Sonar job starting...'
-           bat "./gradlew jacocoTestReport sonarqube -x check"               
+           bat "gradlew jacocoTestReport sonarqube -x check"               
            step( [$class: 'JacocoPublisher',
                   exclusionPattern: '**/*Exception*,**/*Configuration*,**/ApiApplication*,**/*Test*'] )
           }
