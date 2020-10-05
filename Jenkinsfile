@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-		print "DEBUG: parameter foo = ${env.StrParam}"
+		print "DEBUG: parameter foo = ${StrParam}"
+		echo 'DEBUG: parameter foo = ${StrParam}'
                 echo 'Building..'
 		bat 'mvn -Dmaven.test.failure.ignore=true install'
             }
